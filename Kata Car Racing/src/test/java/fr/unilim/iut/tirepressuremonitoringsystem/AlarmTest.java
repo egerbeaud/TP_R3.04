@@ -3,9 +3,9 @@ package fr.unilim.iut.tirepressuremonitoringsystem;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class AlarmTest {
@@ -13,7 +13,7 @@ class AlarmTest {
 	@Test
 	void shouldTriggerAlarmByTooLowPressure() {
 		
-		PressureSensor sensor = mock(PressureSensor.class);
+		PressureSensor sensor = spy(PressureSensor.class);
 		when(sensor.popNextPressurePsiValue()).thenReturn(15.0);
 		
 		Alarm alarm = new Alarm();
@@ -26,7 +26,7 @@ class AlarmTest {
 	@Test
 	void shouldTriggerAlarmByTooHighPressure() {
 		
-		PressureSensor sensor = mock(PressureSensor.class);
+		PressureSensor sensor = spy(PressureSensor.class);
 		when(sensor.popNextPressurePsiValue()).thenReturn(30.0);
 		
 		Alarm alarm = new Alarm();
@@ -40,7 +40,7 @@ class AlarmTest {
 	@Test
 	void shouldNotTriggerAlarmByGoodPressure() {
 		
-		PressureSensor sensor = mock(PressureSensor.class);
+		PressureSensor sensor = spy(PressureSensor.class);
 		when(sensor.popNextPressurePsiValue()).thenReturn(18.0);
 		
 		Alarm alarm = new Alarm();
@@ -52,7 +52,7 @@ class AlarmTest {
 	@Test
 	void shouldTriggerAlarmAndStayTriggered() {
 		
-		PressureSensor sensor = mock(PressureSensor.class);
+		PressureSensor sensor = spy(PressureSensor.class);
 		when(sensor.popNextPressurePsiValue()).thenReturn(15.0);
 		
 		Alarm alarm = new Alarm();
